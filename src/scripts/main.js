@@ -21,13 +21,25 @@ promise1
     document.body.appendChild(div);
   })
   .catch((error) => {
-    error();
+    const div = document.createElement('div');
+
+    div.className = 'message error-message';
+    div.textContent = error;
+    document.body.appendChild(div);
   });
 
-promise2.catch(() => {
-  const div = document.createElement('div');
+promise2
+  .then(() => {
+    const div = document.createElement('div');
 
-  div.className = 'message error-message';
-  div.textContent = 'Promise was rejected!';
-  document.body.appendChild(div);
-});
+    div.className = 'message';
+    div.textContent = 'Promise was resolved!';
+    document.body.appendChild(div);
+  })
+  .catch(() => {
+    const div = document.createElement('div');
+
+    div.className = 'message error-message';
+    div.textContent = 'Promise was rejected!';
+    document.body.appendChild(div);
+  });
